@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D://hibernate_and_jpa_fundamentals_course_project/hibernate_and_jpa_fundamentals_course_project.iml" filepath="D://hibernate_and_jpa_fundamentals_course_project/hibernate_and_jpa_fundamentals_course_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hibernate_and_jpa_fundamentals_course_project.iml" filepath="$PROJECT_DIR$/hibernate_and_jpa_fundamentals_course_project.iml" />
     </modules>
   </component>
 </project>
