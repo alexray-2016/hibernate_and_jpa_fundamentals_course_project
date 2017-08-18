@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -13,7 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapKey;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +29,7 @@ public class Bank {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "BANK_ID")
 	private Long bankId;
-
+	
 	@Column(name = "NAME")
 	private String name;
 
@@ -103,6 +106,14 @@ public class Bank {
 	public void setState(String state) {
 		this.address.setState(state);
 	}
+	
+	public String getAddressType() {
+		return address.getAddressType();
+	}
+
+	public void setAddressType(String addressType) {
+		this.address.setAddressType(addressType);
+	}
 
 	public String getZipCode() {
 		return address.getZipCode();
@@ -160,5 +171,4 @@ public class Bank {
 		this.contacts = contacts;
 	}
 
-	
 }

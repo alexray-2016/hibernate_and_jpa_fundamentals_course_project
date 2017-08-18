@@ -25,6 +25,7 @@
         <mapping class="ru.alexraydev.data.entities.Account"/>
         <mapping class="ru.alexraydev.data.entities.Budget"/>
         <mapping class="ru.alexraydev.data.entities.Transaction"/>
+        <mapping class="ru.alexraydev.data.entities.Currency"/>
 
     </session-factory>
 

@@ -1,8 +1,24 @@
 package ru.alexraydev.data.entities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Formula;
 
@@ -15,9 +31,12 @@ public class User {
 	@Column(name = "USER_ID")
 	private Long userId;
 
-	@OneToOne(mappedBy="user")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
+	private Set<Account> accounts = new HashSet<Account>();
+
+	@OneToOne(mappedBy = "user")
 	private Credential credential;
-	
+
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 
@@ -31,14 +50,12 @@ public class User {
 	private String emailAddress;
 
 	@ElementCollection
-	@CollectionTable(name="USER_ADDRESS", joinColumns=@JoinColumn(name="USER_ID"))
-	@AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
-		@AttributeOverride(name="addressLine2", column=@Column(name="USER_ADDRESS_LINE_2"))})
+	@CollectionTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
+	@AttributeOverrides({
+			@AttributeOverride(name = "addressLine1", column = @Column(name = "USER_ADDRESS_LINE_1")),
+			@AttributeOverride(name = "addressLine2", column = @Column(name = "USER_ADDRESS_LINE_2")) })
 	private List<Address> addresses = new ArrayList<Address>();
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
-    private Set<Account> accounts = new HashSet<>();
-	
 	@Column(name = "LAST_UPDATED_DATE")
 	private Date lastUpdatedDate;
 
@@ -62,11 +79,9 @@ public class User {
 		return addresses;
 	}
 
-
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-
 
 	public void setAge(int age) {
 		this.age = age;
@@ -152,11 +167,12 @@ public class User {
 		this.credential = credential;
 	}
 
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
 
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-    }
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
+	}
+
 }
